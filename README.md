@@ -1,14 +1,22 @@
-# Jumper-Kubernetes
+# Jumper - A Url Shortener
 
 Jumper is a simple url shortener. Url shorteners transform any long URL into a shorter, more readable url. When a user clicks the shortened version, they're automatically forwarded to the original url.
 
-This the Jumper-Kubernetes version based upon Kubernetes, Java, Spring Boot, Vanilla JavaScript, and MongoDB.
+The Jumper Url Shortener is based upon the following technologies:
 
-> Note: Jumper is a small app to test microservices and Kubernetes! It is not meant to be perfect!
+- Java 21
+- Spring Boot 3.2.2
+- Vanilla JavaScript
+- MongoDB
+- Kubernetes
+
+If you have successfully started it, then you can go to [http://localhost](http://localhost:80) and see the following amazing frontend.
+
+![jumper.io](jumper.png)
 
 ## Installation Guide
 
-We assume that you have started _Docker Desktop_ on you machine.
+I assume that you have installed _Docker Desktop_, started it and enabled kubernetes.
 
 ### Create docker images
 
@@ -18,10 +26,10 @@ Change to directory `jumper-frontend`.
 cd jumper-frontend
 ```
 
-Create the docker image.
+Create the docker image for the frontend.
 
 ```bash
-docker build -t somnidev/jumper-frontend:latest -t somnidev/jumper-frontend:0.1 -f Dockerfile .
+docker build -t soserdev/jumper-frontend:latest -t soserdev/jumper-frontend:0.1 -f Dockerfile .
 ```
 
 Change the directory to `jumper-api`.
@@ -33,17 +41,17 @@ cd jumper-api
 Create the docker image for the api.
 
 ```bash
-docker build -t somnidev/jumper-api:latest -t somnidev/jumper-api:0.1 -f Dockerfile .
+docker build -t soserdev/jumper-api:latest -t soserdev/jumper-api:0.1 -f Dockerfile .
 ```
 
 There should be two docker images for jumper.
 
 ```bash
 % docker image ls | grep jumper                                                                  
-somnidev/jumper-api                   0.1                                                     41889f012846   About a minute ago   196MB
-somnidev/jumper-api                   latest                                                  41889f012846   About a minute ago   196MB
-somnidev/jumper-frontend              0.1                                                     2ccbaf883b14   3 minutes ago        22.7MB
-somnidev/jumper-frontend              latest                                                  2ccbaf883b14   3 minutes ago        22.7MB
+soserdev/jumper-api                   0.1                                                     41889f012846   About a minute ago   196MB
+soserdev/jumper-api                   latest                                                  41889f012846   About a minute ago   196MB
+soserdev/jumper-frontend              0.1                                                     2ccbaf883b14   3 minutes ago        22.7MB
+soserdev/jumper-frontend              latest                                                  2ccbaf883b14   3 minutes ago        22.7MB
 ```
 
 ### Deploy to Kubernetes
@@ -158,8 +166,6 @@ replicaset.apps/mongodb-5b4859859c      1         1         1       7m
 ### Take a look at the frontend
 
 Now we can take a look at our app. In order to do this, open the browser and go to `http://localhost/` or if configured in your `/etc/hosts` file, just use `http://jumper.io` and create a shortened url.
-
-![jumper.io](jumper.png)
 
 ### Create and get short url using the backend api
 
